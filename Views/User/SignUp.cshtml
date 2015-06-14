@@ -1,0 +1,143 @@
+﻿@model Ads.Models.User
+
+@{
+    ViewBag.Title = "SignUp";
+}
+
+<html>
+<head>
+    <title></title>
+
+    <link href="bootstrap.css" rel="stylesheet" />
+    <script src="bootstrap.js"></script>
+
+    <script >
+
+        function checkavail()
+        {
+            if (validate()) {
+                var val = document.getElementById("MyEmail").value;
+
+                $("#showavail").load("/user/checkavailability?email=" + val);
+            }
+
+        }
+
+        function submitcheck()
+        {
+            checkavail();
+
+            if (document.getElementById("showavail").innerHTML == "Available") {
+                return true;
+            }
+            else {
+                alert("This email has already registered.");
+                return false;
+            }
+        }
+
+        function validate()
+        {
+            var val = document.getElementById("MyEmail").value;
+            var part=val.split("@@");
+            if(part.length==2)
+            {
+                var scnd= part[1].split(".");
+
+                if(scnd.length>=2)
+                {
+                    return true;
+                }
+                else
+                {
+                    alert("Enter valid email");
+                    return false;
+                }
+            }
+            else
+            {
+                alert("Enter valid email");
+                return false;
+            }
+        }
+
+    </script>
+
+</head>
+<body>
+
+    <div>
+
+        <div class="row">
+
+            <div class="col-md-8">
+                <h1 align="center">Enter your Details</h1>
+
+              <!--  <form action="/User/SignUp1" method="get" class="form-horizontal">--> @using (Html.BeginForm("SignUp1", "User", new FormMethod(), new { @class = "form-horizontal",onsubmit="return submitcheck()" }))
+                                                                                         {
+
+
+                    <div class="form-group">
+                       <!-- <label for="inputName3" class="col-sm-2 control-label">Name</label>-->  @Html.LabelFor(mn => mn.Name, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-10">
+                            <!--<input type="text" required name="Name" class="form-control" id="inputName3" placeholder="Full Name">--> @Html.TextBoxFor(mn => mn.Name, new { placeholder = "Full Name", required = "required", @class = "form-control" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                      <!--  <label for="inputEmail3" class="col-sm-2 control-label">Email</label>--> @Html.LabelFor(mn => mn.Email, new { @class = "col-sm-2 control-label" }) 
+                        <div class="col-sm-10">
+                         <!--  <input type="text" required name="Email" class="form-control" id="inputEmail3" placeholder="Email">--> @Html.TextBoxFor(mn => mn.Email, new { placeholder = "Email",type="Email" ,id="MyEmail",required = "required", @class = "form-control" }) <a class="btn btn-danger" onclick="checkavail()" >Check Availability</a> <div id="showavail"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                       <!-- <label for="inputPhone3" class="col-sm-2 control-label">Phone</label>--> @Html.LabelFor(mn => mn.Phone, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-10">
+                         <!--   <input type="text" required name="Phone" class="form-control" id="inputPhone3" placeholder="Phone">--> @Html.TextBoxFor(mn => mn.Phone, new { placeholder = "Phone", required = "required", @class = "form-control" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                      <!--  <label for="inputPassword3" class="col-sm-2 control-label">Password</label>--> @Html.LabelFor(mn => mn.Password, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-10">
+                          <!--  <input type="password" required name="Password" class="form-control" id="inputPassword3" placeholder="Password">-->@Html.PasswordFor(mn => mn.Password, new { placeholder = "Password", required = "required", @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                      <!-- <label for="inputAddress3" class="col-sm-2 control-label">Address</label>-->@Html.LabelFor(mn => mn.Address, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-10">
+                           <!-- <input type="text" required name="Address" class="form-control" id="inputAddress3" placeholder="Address">-->@Html.TextBoxFor(mn => mn.Address, new { placeholder = "Address", required = "required", @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                      <!--  <label for="inputCountry3" class="col-sm-2 control-label">Country</label>-->@Html.LabelFor(mn => mn.Country, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-10">
+                           <!-- <input type="text" required name="Country" class="form-control" id="inputCountry3" placeholder="Country">-->@Html.TextBoxFor(mn => mn.Country, new { placeholder = "Country", required = "required", @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                     <!--   <label for="inputRegion3" class="col-sm-2 control-label">Region</label> --> @Html.LabelFor(mn => mn.Region, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-10">
+                           <!-- <input type="text" required name="Region" class="form-control" id="inputRegion3" placeholder="Region">-->@Html.TextBoxFor(mn => mn.Region, new { placeholder = "Region", required = "required", @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Create Account</button>
+                        </div>
+                    </div>
+           <!--     </form>-->}
+
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

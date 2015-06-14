@@ -1,0 +1,118 @@
+﻿@{
+    ViewBag.Title = "_Layout1.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <script src="~/Scripts/bootstrap.js"></script>
+
+</head>
+<body>
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/Home/Index"><img height="35" width="35" src="~/MyImages/logo.png" /></a>
+
+        </div>
+        <div>
+            
+
+
+            <ul class="nav navbar-nav pull-right">
+
+                @if (Session["Id"] == null)
+                {
+                    <li>
+                        <a href="/User/Login">Login</a>
+                    </li>
+
+                    <li>
+                        <a href="/User/SignUp">Sign Up</a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="/User/Profile?id=@Session["Id"]"><div >@Session["Name"] : </div></a>
+                    </li>
+
+                    <li>
+                        <a href="/User/Logout">Logout</a>
+                    </li>
+
+                }
+
+                <li>
+                    <a href="/Admin/DeleteExpiredAds" class="btn btn-default">Delete Expired Ads</a>
+                </li>
+                
+                <li>
+                    <a href="/Admin/Insert" class="btn btn-default">Add User</a>
+                </li>
+
+                <li>
+                    <a href="/Admin/Delete" class="btn btn-default">Delete User</a>
+                </li>
+
+                <li>
+                    <a href="/Admin/Update" class="btn btn-default">Update User</a>
+                </li>
+
+                <li>
+                    <a href="/Admin/ViewAll" class="btn btn-default">ViewAll User</a>
+                </li>
+                <li>
+                    <a href="/Admin/ViewAllFeed" class="btn btn-default">Feedbacks</a>
+                </li>
+
+                <li>
+                    <a href="/Admin/ViewAllCat" class="btn btn-default">Categories</a>
+                </li>
+
+                <li>
+                    <a href="/Admin/ViewAllSubCat" class="btn btn-default">Sub Categories</a>
+                </li>
+
+                <li>
+                    <a href="/Admin/ViewAllReg" class="btn btn-default">Regions</a>
+                </li>
+
+               
+</ul>
+
+        </div>
+
+    </nav>
+
+
+
+    @RenderBody()
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+
+            <p class="navbar-text">Copyrights reserved.</p>
+            <div class="pull-right">Subcribe on <a class="navbar-button btn btn-danger">Youtube</a>&nbsp;<a class="navbar-button btn btn-primary">Facebook</a>&nbsp;<a class="navbar-button btn btn-default">Twitter</a>&nbsp;</div>
+        </div>
+
+
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

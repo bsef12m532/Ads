@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Ads.Models.SubCategory>
+
+
+@{
+    ViewBag.Title = "Subcategory";
+    Layout = null;
+}
+
+<table class="table table-bordered table-hover" cellspacing="20px" cellpadding="20px" border="1" align="center">
+
+    <tr><th>ID</th><th>Name</th><th>Delete</th></tr>
+
+    @foreach (var u in Model)
+    {
+        <tr>
+            <td>@u.Id</td>
+            <td>@u.Name</td>
+            <td><a href="/Admin/DeleteSubCat?Id=@u.Id">Delete</a></td>
+
+        </tr>
+
+    }
+
+
+</table>
+

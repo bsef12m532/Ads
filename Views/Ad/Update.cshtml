@@ -1,0 +1,129 @@
+﻿@model Ads.Models.Ad
+
+@{
+    ViewBag.Title = "Update";
+}
+
+@using Ads.Models;
+<html>
+<head>
+    <title></title>
+
+    <link href="bootstrap.css" rel="stylesheet" />
+    <script src="bootstrap.js"></script>
+
+    <script>
+    function funct(val) {
+        if (val == "ALL" || val == "Other") {
+            document.getElementById("subcategory2").innerHTML = "";
+        }
+        else
+            $("#subcategory2").load('/ad/subcategory2?cat=' + val);
+    }
+
+    </script>
+
+</head>
+<body>
+
+
+
+    <div>
+
+        <div class="row" style="width:99%;">
+
+
+
+
+
+            <div class="col-md-8">
+                <h1 align="center">Enter Ad Details</h1>
+
+                <form action="/Ad/Update1" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <input type="text" value="@Model.Id" hidden="hidden" name="Id" />
+
+                    <div class="form-group">
+                        <label for="inputName3" class="col-sm-2 control-label">Ad Title </label>
+                        <div class="col-sm-10">
+                            <input type="text" required name="Title" class="form-control" id="inputName3" value="@Model.Title.Trim()">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="inputYear3" class="col-sm-2 control-label">Category</label>
+                        <div class="col-sm-10">
+                            <select class=" form-control" onclick="funct(this.value)" style="width:100px;" name="Category">
+                                @foreach (Category c in (IEnumerable<Category>)Session["Categories"])
+                                {
+                                    <option value="@c.Name.Trim()">@c.Name.Trim()</option>
+                                }
+                                <option value="Other">Other</option>
+
+                            </select>
+                            <div style="width:200px" id="subcategory2">
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Price</label>
+                        <div class="col-sm-10">
+                            <input type="number" required name="Price" class="form-control" id="inputEmail3" value="@Model.Price">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="inputNPhone3" class="col-sm-2 control-label">Phone</label>
+                        <div class="col-sm-10">
+                            <input type="text" required name="Phone" class="form-control" id="inputPhone3" value="@Model.Phone.Trim()">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="inputNotes3" class="col-sm-2 control-label">Details</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" required id="inputNotes3" placeholder="Enter New Ad details here" name="Details" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputCountry3" class="col-sm-2 control-label">Country</label>
+                        <div class="col-sm-10">
+                            <input type="text" required name="Country" class="form-control" id="inputCountry3" value="@Model.Country.Trim()">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputRegion3" class="col-sm-2 control-label">Region</label>
+                        <div class="col-sm-10">
+
+                            <select class=" form-control" name="Region">
+                                @foreach (Region c in (IEnumerable<Region>)Session["Regions"])
+                                {
+                                    <option value="@c.Name.Trim()">@c.Name.Trim()</option>
+                                }
+                                <option value="Other">Other</option>
+                            </select>
+
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Update Ad</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

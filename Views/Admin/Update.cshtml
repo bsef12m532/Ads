@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Ads.Models.User>
+
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@using Ads.Models;
+<h2 align="center">Select the ID of user to Update</h2>
+
+<table class="table table-bordered table-hover" cellspacing="20px" cellpadding="20px" border="1" align="center">
+
+    <tr><th>ID</th><th>Name</th></tr>
+
+    @foreach (var u in Model)
+    {
+
+        <tr>
+            <td><a href="/Admin/Update1?Id=@u.Id">@u.Id</a></td>
+            <td>@u.Name</td>
+
+        </tr>
+
+
+    }
+
+
+</table>

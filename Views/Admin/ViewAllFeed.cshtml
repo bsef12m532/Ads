@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Ads.Models.Feedback>
+
+@{
+    ViewBag.Title = "ViewAllFeed";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using Ads.Models;
+@using System;
+
+<h2 align="center">All Feedback</h2>
+
+<table class="table table-bordered table-hover" cellspacing="20px" cellpadding="20px" border="1" align="center">
+
+    <tr><th>ID</th><th>Subject</th><th>Body</th><th>Delete</th></tr>
+
+    @foreach (var u in Model)
+    {
+        <tr>
+            <td>@u.Id</td>
+            <td>@u.Subject</td>
+            <td>@u.Body</td>
+            <td><a href="/Admin/DeleteFeed?Id=@u.Id">Delete</a></td>
+
+        </tr>
+    }
+
+
+</table>

@@ -1,0 +1,214 @@
+﻿@using Ads.Models;
+
+<!DOCTYPE html>
+<html>
+<head>
+
+
+    <script type="text/javascript" src="~/Fancy/source/jquery-latest.min.js"></script>
+    <!-- Add mousewheel plugin (this is optional) -->
+    <script type="text/javascript" src="~/Fancy/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+
+    <!-- Add fancyBox -->
+    <link rel="stylesheet" href="~/Fancy/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+    <script type="text/javascript" src="~/Fancy/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+    <!-- Optionally add helpers - button, thumbnail and/or media -->
+    <link rel="stylesheet" href="~/Fancy/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
+    <script type="text/javascript" src="~/Fancy/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+    <script type="text/javascript" src="~/Fancy/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+
+    <link rel="stylesheet" href="~/Fancy/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
+    <script type="text/javascript" src="~/Fancy/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".fancybox").fancybox({
+                openEffect: 'none',
+                closeEffect: 'none'
+            });
+        });
+    </script>
+
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    
+    <script src="~/Scripts/bootstrap.js"></script>
+
+    <script>
+    function funct(val)
+    {
+        if(val=="ALL" || val=="Other")
+        {
+            document.getElementById("subcategory").innerHTML="";
+        }
+        else
+        $("#subcategory").load('/ad/subcategory2?cat='+val);
+    }
+
+    function searchJson()
+    {
+        var Title=document.getElementById("inputName3").value;
+        var Category=document.getElementById("Category").value;
+        var Region=document.getElementById("Region").value;
+
+        var scname=null;
+        if (document.getElementById("scname") != null)
+            scname = document.getElementById("scname").value;
+
+
+        $.getJSON("/Ad/ALL2?Title="+Title+"&Category="+Category+"&Region="+Region+"&scname="+scname,function (data) {
+            var div = document.getElementById('ajaxDiv');
+            div.innerHTML = "";
+                
+            $("#ajaxDiv").append("<h2 align='center'>Available Ads</h2>");
+            $("#ajaxDiv").append(data);
+
+        });
+    }
+
+    function printObject(div, item) {
+        div.append("<br/>" + "FName: " + item.FirstName + ", LName: " + item.LastName);
+       
+        }
+
+
+
+    </script>
+   
+</head>
+<body>
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/Home/Index"><img height="35" width="35" src="~/MyImages/logo.png" /></a>
+
+        </div>
+
+
+
+        <div>
+            <form action="/Ad/All" method="get" class="navbar-form col-md-8">
+
+
+                <div class="form-group">
+
+                    <div class="col-sm-10">
+                        <input type="text" name="Title" class="form-control" id="inputName3" placeholder="Search Ads here">
+                    </div>
+
+                </div>
+
+                <div class="form-group" id="subcategory">
+
+                </div>
+
+
+
+                <div class="form-group">
+                   
+                        <select class=" form-control" id="Category" name="Category" onchange="funct(this.value)">
+                            <option value="ALL">ALL Categories</option>
+                            @foreach(Category c in (IEnumerable<Category>)Session["Categories"])
+                            { 
+                            <option value="@c.Name.Trim()">@c.Name.Trim()</option>
+                            }
+                           
+                            <option value="Other">Other</option>
+
+                        </select>
+                    
+                </div>
+
+                <div class="form-group">
+                    
+                        <select class=" form-control" id="Region" name="Region">
+                            <option value="ALL">ALL Regions</option>
+                            @foreach (Region c in (IEnumerable<Region>)Session["Regions"])
+                            {
+                                <option value="@c.Name.Trim()">@c.Name.Trim()</option>
+                            }
+                            <option value="Other">Other</option>
+                        </select>
+
+                </div>
+
+                <input class="btn btn-primary" style="width:100px" readonly="readonly" onclick="searchJson()" value="Search Ad" />
+            </form>
+
+
+
+            <ul class="nav navbar-nav pull-right">
+
+                <li>
+                    <a class="btn btn-default" href="/Ad/Index">Post Your Ad</a>
+                </li>
+
+              @if(Session["Id"] ==null )
+              {
+                <li>
+                    <a href="/User/Login">Login</a>
+                </li>
+
+                <li>
+                    <a href="/User/SignUp">Sign Up</a>
+                </li>
+              }
+              else
+              {
+                <li>
+                    <a href="/User/Profile?id=@Session["Id"]"><div >@Session["Name"] : </div></a>
+</li>
+
+                <li>
+                    <a  href="/User/Logout">Logout</a>
+                </li>
+
+                <li>
+                    <a href="/User/ViewMyAds">View My Ads</a>
+                </li>
+
+                  
+
+              }
+
+                <li>
+                    <a href="/Feedback">Feedback</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </nav>
+
+
+    <div id="ajaxDiv">
+        @RenderBody()
+    </div>
+
+    <br />
+    <br />
+
+    <div class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+
+            <p class="navbar-text">Copyrights reserved.</p>
+            <div class="pull-right">Subcribe on <a class="navbar-button btn btn-danger">Youtube</a>&nbsp;<a class="navbar-button btn btn-primary">Facebook</a>&nbsp;<a class="navbar-button btn btn-default">Twitter</a>&nbsp;</div>
+        </div>
+
+
+    </div>
+    
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Delete";
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using Ads.Models;
+<h2 align="center">Select the ID of user to Delete</h2>
+
+<table class="table table-bordered table-hover" cellspacing="20px" cellpadding="20px" border="1" align="center">
+
+    <tr><th>ID</th><th>Name</th></tr>
+
+    @foreach (User u in Model)
+    {
+        <tr>
+            <td><a href="/Admin/Delete1?Id=@u.Id">@u.Id</a></td>
+            <td>@u.Name</td>
+
+        </tr>
+
+
+    }
+
+
+</table>
+
+

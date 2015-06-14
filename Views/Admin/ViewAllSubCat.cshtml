@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Ads.Models.Category>
+
+
+@{
+    ViewBag.Title = "ViewAllSubCat";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script>
+    function funct(val) {
+
+        $("#subcategory").load('/ad/subcategory?cat=' + val);
+    }
+
+</script>
+
+
+<form class="center-block" style="width:400px" action="/Admin/AddSubCat">
+    <h2 >ViewAllSubCat</h2>
+
+    <div class="form-group center-block">
+        <label for="inputCat3" class="col-sm-2 control-label">Select Category</label>
+        <div style="width:200px;" class="col-sm-10">
+            <select class=" form-control" id="inputCat3" onclick="funct(this.value)" name="cname">
+                @foreach (var c in Model)
+                {
+                    <option value="@c.Name.Trim()">@c.Name.Trim()</option>
+                }
+
+            </select>
+        </div>
+    </div>
+
+
+
+    <br />
+    <br />
+
+    <div id="subcategory">
+
+    </div>
+
+    <br />
+
+
+
+    <input type="text" name="scname" placeholder="Enter New Sub Category" />
+    <input type="submit" value="Add" />
+
+</form>
+
+

@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "Insert";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<html>
+<head>
+    <title></title>
+
+    <link href="bootstrap.css" rel="stylesheet" />
+    <script src="bootstrap.js"></script>
+</head>
+<body>
+
+
+
+    <div>
+
+        <div class="row">
+
+
+
+
+
+            <div class="col-md-8">
+                <h1 align="center">Enter your Details</h1>
+
+                <form action="/Admin/Insert1" method="get" class="form-horizontal">
+
+
+                    <div class="form-group">
+                        <label for="inputName3" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" required name="Name" class="form-control" id="inputName3" placeholder="Full Name">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" required name="Email" class="form-control" id="inputEmail3" placeholder="Email">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputType3" class="col-sm-2 control-label">Type</label>
+                        <div class="col-sm-10">
+                            <input type="text" required name="Type" class="form-control" id="inputType3" placeholder="Type e.g User or Admin">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPhone3" class="col-sm-2 control-label">Phone</label>
+                        <div class="col-sm-10">
+                            <input type="text" required name="Phone" class="form-control" id="inputPhone3" placeholder="Phone">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" required name="Password" class="form-control" id="inputPassword3" placeholder="Password">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputAddress3" class="col-sm-2 control-label">Address</label>
+                        <div class="col-sm-10">
+                            <input type="text" required name="Address" class="form-control" id="inputAddress3" placeholder="Address">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputCountry3" class="col-sm-2 control-label">Country</label>
+                        <div class="col-sm-10">
+                            <input type="text" required name="Country" class="form-control" id="inputCountry3" placeholder="Country">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputRegion3" class="col-sm-2 control-label">Region</label>
+                        <div class="col-sm-10">
+                            <input type="text" required name="Region" class="form-control" id="inputRegion3" placeholder="Region">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Create Account</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

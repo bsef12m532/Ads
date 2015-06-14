@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Ads.Models.SubCategory>
+
+
+@{
+    ViewBag.Title = "Subcategory";
+    Layout = null;
+}
+
+<select class="form-control" id="scname" name="scname">
+    @foreach (var c in Model)
+    {
+        <option value="@c.Name.Trim()">@c.Name.Trim()</option>
+    }
+
+</select>
+
+
+
