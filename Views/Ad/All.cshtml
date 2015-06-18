@@ -13,22 +13,7 @@
 
     <title></title>
 
-    <script type="text/javascript" src="~/Fancy/source/jquery-latest.min.js"></script>
-    <!-- Add mousewheel plugin (this is optional) -->
-    <script type="text/javascript" src="~/Fancy/lib/jquery.mousewheel-3.0.6.pack.js"></script>
-
-    <!-- Add fancyBox -->
-    <link rel="stylesheet" href="~/Fancy/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
-    <script type="text/javascript" src="~/Fancy/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-    <!-- Optionally add helpers - button, thumbnail and/or media -->
-    <link rel="stylesheet" href="~/Fancy/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
-    <script type="text/javascript" src="~/Fancy/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
-    <script type="text/javascript" src="~/Fancy/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
-
-    <link rel="stylesheet" href="~/Fancy/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
-    <script type="text/javascript" src="~/Fancy/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
-
+    
     <script type="text/javascript">
         $(document).ready(function () {
             $(".fancybox").fancybox();
@@ -50,7 +35,7 @@
 
         <div class="center-block" style="background-color:aqua; width:80%; border-radius:10px; padding:20px">
             <div style="width:30%;  height:220px; border:1px solid black">
-                <a class="fancybox" href="~/AdImages/@(u.Id+@"/"+u.Id+"0.jpg")"> <img width="100%" height="220" src="~/AdImages/@(u.Id+@"/"+u.Id+"0.jpg")" /></a>
+                <a class="fancybox" href="~/Images/AdImages/@(u.Id+@"/"+u.Id+"0.jpg")"> <img width="100%" height="220" src="~/Images/AdImages/@(u.Id+@"/"+u.Id+"0.jpg")" /></a>
             </div>
             <div style="width:70%; position:relative;margin-left:32%; margin-top:-230px;">
                 <h1><a href="/Ad/showAd?Id=@u.Id">@u.Title.Trim()</a></h1>
